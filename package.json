@@ -1,10 +1,13 @@
 {
-  "name": "remote-redux-devtools",
-  "version": "0.5.13",
+  "name": "wechat-remote-redux-devtools",
+  "version": "0.5.24",
   "description": "Relay Redux actions to remote Redux DevTools.",
   "main": "lib/index.js",
   "files": [
     "lib"
+  ],
+  "maintainers": [
+    "Keyon U"
   ],
   "scripts": {
     "clean": "rimraf lib",

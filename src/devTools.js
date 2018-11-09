@@ -1,9 +1,8 @@
 import { stringify, parse } from 'jsan';
-import socketCluster from 'socketcluster-client';
+import socketCluster from './socket';
 import configureStore from './configureStore';
 import { defaultSocketOptions } from './constants';
-import getHostForRN from 'rn-host-detect';
-import { evalAction, getActionsArray } from 'remotedev-utils';
+import { evalAction, getActionsArray } from './utils';
 import catchErrors from 'remotedev-utils/lib/catchErrors';
 import {
   getLocalFilter,
@@ -205,7 +204,7 @@ function start() {
     if (suppressConnectErrors) {
       if (errorCounts[err.name] === 1) {
         console.log('remote-redux-devtools: Socket connection errors are being suppressed. ' + '\n' +
-              'This can be disabled by setting suppressConnectErrors to \'false\'.');
+          'This can be disabled by setting suppressConnectErrors to \'false\'.');
         console.log(err);
       }
     } else {
@@ -268,8 +267,8 @@ function handleChange(state, liftedState, maxAge) {
 
 export default function devToolsEnhancer(options = {}) {
   init({
+    hostname: 'localhost',
     ...options,
-    hostname: getHostForRN(options.hostname || 'localhost')
   });
   const realtime = typeof options.realtime === 'undefined'
     ? process.env.NODE_ENV === 'development' : options.realtime;
@@ -317,7 +316,7 @@ devToolsEnhancer.updateStore = (newStore) => {
 };
 
 const compose = (options) => (...funcs) => (...args) =>
- [preEnhancer, ...funcs].reduceRight(
+  [preEnhancer, ...funcs].reduceRight(
     (composed, f) => f(composed), devToolsEnhancer(options)(...args)
   );
 
