@@ -8,7 +8,7 @@ Use [Redux DevTools](https://github.com/gaearon/redux-devtools) remotely for Rea
 ### Installation
 
 ```
-npm install --save-dev remote-redux-devtools
+npm install --save-dev wechat-remote-redux-devtools
 ```
 
 > Note: for Windows use `remote-redux-devtools@0.5.0` (newer versions will not work due to a Windows issue fixed in `react-native`).
@@ -27,7 +27,7 @@ If you have a basic [store](http://redux.js.org/docs/api/createStore.html) as de
   with
   ```javascript
   import { createStore } from 'redux';
-  import devToolsEnhancer from 'remote-redux-devtools';
+  import devToolsEnhancer from 'wechat-remote-redux-devtools';
   const store = createStore(reducer, devToolsEnhancer());
   // or const store = createStore(reducer, preloadedState, devToolsEnhancer());
   ```
@@ -50,7 +50,7 @@ If you have a basic [store](http://redux.js.org/docs/api/createStore.html) as de
   to:
   ```javascript
   import { createStore, applyMiddleware } from 'redux';
-  import { composeWithDevTools } from 'remote-redux-devtools';
+  import { composeWithDevTools } from 'wechat-remote-redux-devtools';
   
   const store = createStore(reducer, /* preloadedState, */ composeWithDevTools(
     applyMiddleware(...middleware),
@@ -60,7 +60,7 @@ If you have a basic [store](http://redux.js.org/docs/api/createStore.html) as de
   or with devTools' options:
   ```javascript
   import { createStore, applyMiddleware } from 'redux';
-  import { composeWithDevTools } from 'remote-redux-devtools';
+  import { composeWithDevTools } from 'wechat-remote-redux-devtools';
   
   const composeEnhancers = composeWithDevTools({ realtime: true, port: 8000 });
   const store = createStore(reducer, /* preloadedState, */ composeEnhancers(
